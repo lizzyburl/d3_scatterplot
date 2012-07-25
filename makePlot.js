@@ -117,11 +117,17 @@ function makeTitles(){
 		.ticks(height*.015);
 
 		svg.append("g")
+		.style("fill", "none")
+		.style("stroke", "black")
+		.style("shape-rendering", "crispEdges")
 		.attr("class", "axis")
 		.attr("transform", "translate(2," + (height - padding) + ")")
 		.call(xAxis);
 
 		svg.append("g")
+			.style("fill", "none")
+			.style("stroke", "black")
+			.style("shape-rendering", "crispEdges")
 			.attr("class", "axis")
 			.attr("transform", "translate(" +( padding + 2 )+ ",0)")
 			.call(yAxis);
@@ -138,6 +144,25 @@ function makeTitles(){
 			.style("max-width", 200)
 			.style("position", "absolute");	
 			
+					
+		d3.selectAll(".axis").selectAll("text").style("font-family", "sans-serif")
+			.style("font-size", 10).style("stroke", "none").style("fill", "black");
+			
+		svg.attr("xmlns", "http://www.w3.org/2000/svg");
+		//.attr("version", 1.1);
+			var draw = document.getElementById("svg0");
+			var bb = new BlobBuilder;
+			bb.append((new XMLSerializer).serializeToString(draw));
+			var blob = bb.getBlob("application/xhtml+xml;charset=" + document.characterSet);
+			saveAs(blob, "plot.svg");
+		
+		/*	
+		var canvas = document.getElementById("myCanvas"),  ctx = canvas.getContext("2d");
+		importSVG(svg, canvas);
+		// draw to canvas...
+		canvas.toBlob(function(blob) {
+			saveAs(blob, "plot.png");
+		});*/
 //	selecting(svg, xScale, yScale);
 	
 	}); //ends getJSON
