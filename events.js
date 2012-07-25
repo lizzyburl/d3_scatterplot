@@ -10,6 +10,16 @@ function eventHandlers(){
 
 } //ends function eventHandlers
 
+function downloadGraph(numb){
+	var svg = d3.select("#svg" + numb);
+	svg.attr("xmlns", "http://www.w3.org/2000/svg");
+	//.attr("version", 1.1);
+		var draw = document.getElementById("svg0");
+		var bb = new BlobBuilder;
+		bb.append((new XMLSerializer).serializeToString(draw));
+		var blob = bb.getBlob("application/xhtml+xml;charset=" + document.characterSet);
+		saveAs(blob, "plot.svg");
+}
 function changeColors(){
 	var colorCode = d3.select("#selectColorCode").property("value");		
 	d3.selectAll(".allCircles").attr("fill",function(d, i){

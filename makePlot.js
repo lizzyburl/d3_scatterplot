@@ -148,13 +148,7 @@ function makeTitles(){
 		d3.selectAll(".axis").selectAll("text").style("font-family", "sans-serif")
 			.style("font-size", 10).style("stroke", "none").style("fill", "black");
 			
-		svg.attr("xmlns", "http://www.w3.org/2000/svg");
-		//.attr("version", 1.1);
-			var draw = document.getElementById("svg0");
-			var bb = new BlobBuilder;
-			bb.append((new XMLSerializer).serializeToString(draw));
-			var blob = bb.getBlob("application/xhtml+xml;charset=" + document.characterSet);
-			saveAs(blob, "plot.svg");
+
 		
 		/*	
 		var canvas = document.getElementById("myCanvas"),  ctx = canvas.getContext("2d");
