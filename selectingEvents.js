@@ -6,7 +6,7 @@ function eventHandlers(){
 	    
 	    changeColors();
 	});
-    $(document).click(clickFunction);
+    //$(document).click(clickFunction);
 	//$("#button").click(writeDownloadLink);
 
 } //ends function eventHandlers
@@ -58,13 +58,11 @@ function displayDataOfSelected(svg){
     var info = d3.select("#info")
 	.style("font-family", "sans-serif");
     info.html("");
-	var infoText = "Selected";
+	var infoText = "Selected: ";
+	infoText+=d3.selectAll(".selected")[0].length + "<BR>Ids";
 	d3.selectAll(".selected")[0].forEach(function(point, i){
 		var index = (d3.select(point).attr("title"));
-		window.attributes.forEach(function(key){
-	    infoText += " <BR>  " + key + ": " + window.attrData[index].sample[key];
-	});
-		infoText+="<BR>"
+	    infoText += " <BR> " + window.attrData[index].sample["id"];
 	});
     info.html(infoText);
 

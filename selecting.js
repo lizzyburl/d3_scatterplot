@@ -19,6 +19,7 @@ svg.append("g")
 function brushstart() {
   svg.classed("selecting", true);
   svg.selectAll(".allCircles").classed("selectingCircles", true);
+  clickFunction();
 }
 
 function brush() {
