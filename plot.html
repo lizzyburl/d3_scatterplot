@@ -1,20 +1,22 @@
 <html>
 <head>
 	<script type="text/javascript" src="makePlot.js"></script>
-	<script type="text/javascript" src="events.js"></script>
+	<script type="text/javascript" src="selectingEvents.js"></script>
 	<script type="text/javascript" src="makeAttributesDictionary.js"></script>
 	<script type="text/javascript" src="makeHistogramAndList.js"></script>
 	<script type="text/javascript" src="selecting.js"></script>
-	<script type="text/javascript" src="saving.js"></script>
 	<script type="text/javascript" src="fileSaver.js"></script>
 	<script type="text/javascript" src="blobBuilder.js"></script>
-	
+	<script type="text/javascript" src="canvasSVG.js"></script>
+	<script type="text/javascript" src="canvasToBlob.js"></script>
+
 
 </head>
 <body onload="plottingTime()">
 
 	<script type="text/javascript" src="http://d3js.org/d3.v2.js"></script>
 	<script src="http://code.jquery.com/jquery-1.4.2.js"></script>
+
 	<script language="javascript">
 	
 	var attributes;
@@ -26,8 +28,8 @@
 	$.getJSON("attributes.txt", function(data) {
 			attrData = data;
 			makeAttributesDictionary();
-			//makeHistogram();
-			//makeList();
+			makeHistogram();
+			makeList();
 			makePlot('CARD16','CARD17','GSE25935', 0);
 			makePlot('CARD16','CARD17','GSE25935', 3);
 			
@@ -55,11 +57,20 @@
   shape-rendering: crispEdges;
 }
 
+	
+.selecting circle {
+  fill-opacity: .55;
+}
+
+.selecting circle.selected {
+  stroke: #000000;
+  fill-opacity: .9;
+}
 		</style>
 	<button id="button0" class="buttons" onclick="downloadGraph(0)">CLICK ME!!!!!</button>
 	<div id="plot0" class="plots" style="position: relative; border:2px solid pink; height:500px; width:700px;"></div>
 	<div id="plot3" class="plots" style="position: relative; border:2px solid pink; height:500px; width:700px;"></div>
-	<div id="list" style="position:relative; border:2px solid lightblue; max-height:200px; width:300px;"></div>
+	<div id="list" style="position:relative; border:2px solid lightblue; max-height:200px; width:300px; overflow:auto;"></div>
 	<div id="hist" style="border:2px solid lightgreen; height:200px; width:400px;"></div>
 	<div id="info" style="border:2px solid purple; max-height:300px; min-height:100px; width:250px; overflow:auto;"></div>
 </body>
