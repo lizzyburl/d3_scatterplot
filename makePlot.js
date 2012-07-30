@@ -1,7 +1,5 @@
 
-
-
-function makePlot(geneX, geneY, studyID, n){
+function makePlot(geneX, geneY, studyID, n, txt){
     attrData = window.attrData;
     attributes = window.attributes;
     //gets height and width of div container
@@ -17,14 +15,15 @@ function makePlot(geneX, geneY, studyID, n){
 	.append("svg")
 	.attr("id", "svg" + n)
 	.attr("width", width)
-	.attr("height", height);
+	.attr("height", height)
+	.attr("class", "notSelecting");
     
     
     //getting data from the database
     //var data = {studyid: studyid, gene_x: gene_x, gene_y: gene_y};
     //$.getJSON("http://yates.webfactional.com/studies/getData", data, function(d){
     //getting data from my computer
-        $.getJSON("xyData.txt",  function(d){
+        $.getJSON(txt,  function(d){
 	    
 	    //finds the domain and range
 	    var xMax = d3.max(d, function(d){return d.x; });
@@ -95,6 +94,7 @@ function makePlot(geneX, geneY, studyID, n){
 		    })
 		.attr("r", width*height*.00001)
 		.attr("class", "allCircles")
+		.attr("id", function(d, i){return "a" + i;})
 		.attr("title", function(d, i){return i;})
 		.attr("fill", function(d, i){
 			return attributes.get(colorCode).colorInterpolator(attrData[i].sample[colorCode]);
@@ -151,7 +151,7 @@ function makePlot(geneX, geneY, studyID, n){
 	    
 	    d3.selectAll(".axis").selectAll("text").style("font-family", "sans-serif")
 		.style("font-size", 10).style("stroke", "none").style("fill", "black");
-	    
+
 
 	    
 	    /*

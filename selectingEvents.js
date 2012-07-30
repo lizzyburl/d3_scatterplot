@@ -6,7 +6,11 @@ function eventHandlers(){
 	    
 	    changeColors();
 	});
-    //$(document).click(clickFunction);
+//	$("svg").click(selecting(this));
+//$(document).click(function(){
+		//clickFunction();
+		
+//	});
 	//$("#button").click(writeDownloadLink);
 
 } //ends function eventHandlers
@@ -45,6 +49,7 @@ function makeRadiusBigger(svg, width, height){
 function makeRadiusSmallerAgain(){
     var radiusSize = d3.selectAll(".allCircles").attr("r");
     d3.selectAll(".offClick").attr("r",radiusSize).attr("class", "allCircles").style("opacity", .5).attr("stroke-width", .5);
+	d3.selectAll(".selectingCircles").attr("r",radiusSize).attr("class", "allCircles").style("opacity", .5).attr("stroke-width", .5);
 }//ends makeRadius small again
 
 function clickFunction() { 
@@ -52,15 +57,15 @@ function clickFunction() {
     makeRadiusSmallerAgain();
     infoDiv.html("");
 }//ends click
-function displayDataOfSelected(svg){
+function displayDataOfSelected(){
 
 
     var info = d3.select("#info")
 	.style("font-family", "sans-serif");
     info.html("");
 	var infoText = "Selected: ";
-	infoText+=d3.selectAll(".selected")[0].length + "<BR>Ids";
-	d3.selectAll(".selected")[0].forEach(function(point, i){
+	infoText+=d3.selectAll(".selecting").selectAll(".selected")[0].length + "<BR>Ids";
+	d3.selectAll(".selecting").selectAll(".selected")[0].forEach(function(point, i){
 		var index = (d3.select(point).attr("title"));
 	    infoText += " <BR> " + window.attrData[index].sample["id"];
 	});
